@@ -1,0 +1,84 @@
+// mixin for buttons
+
+@mixin App-UI__utility__Buttton--primary($button-bg, $button-fg, $button-txt) {
+	// We're using HSL values, so we can use hsla() and control opacity when required
+	// hsla(hue, saturation, lightness, opacity)
+
+	background-color: $button-bg;
+	color: $button-txt;
+	border: none;
+	text-transform: capitalize;
+	padding: 1rem;
+	border-radius: 0.2rem;
+	gap: 0.5rem;
+	@extend .App-UI__utility__copy__button--primary;
+	display: flex;
+	align-items: center;
+	flex-flow: row;
+	transition: 0.3s all ease-in-out;
+	cursor: pointer;
+    height: 40px;
+
+	&:hover,
+	&:focus {
+		background: $button-fg;
+		color: $button-txt;
+		box-shadow: 0 0 5px $button-fg, 0 0 15px $button-fg;
+		text-shadow: 2px 2px #e76f51;
+	}
+
+	svg {
+		@extend .App-UI__utility__icon;
+        color: $button-txt;
+    
+	}
+}
+
+//mixin for input text field
+// borrowed and adapted from  @ https://codepen.io/maheshambure21/pen/EozKKy
+
+@mixin App-UI__utility__input-style($border-color-line) {
+
+	* ~ .focus-border:before,
+	* ~ .focus-border:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background-color: $border-color-line;
+		transition: 0.4s;
+	}
+	* ~ .focus-border:after {
+		top: auto;
+		bottom: 0;
+	}
+	* ~ .focus-border i:before,
+	* ~ .focus-border i:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 2px;
+		height: 0;
+		background-color: $border-color-line;
+		transition: 0.4s;
+	}
+	* ~ .focus-border i:after {
+		left: auto;
+		right: 0;
+	}
+	*:focus ~ .focus-border:before,
+	*:focus ~ .focus-border:after {
+		left: 0;
+		width: 100%;
+		transition: 0.4s;
+	}
+	*:focus ~ .focus-border i:before,
+	*:focus ~ .focus-border i:after {
+		top: 0;
+		height: 100%;
+		transition: 0.4s;
+	}
+}

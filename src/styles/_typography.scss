@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+
+html, body, .App-UI{
+
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    background: aliceblue;
+  
+}
+
+body{
+    background: radial-gradient(#f6c 15%, rgba(0,0,0,0) 16%), radial-gradient(#6cf 15%, rgba(0,0,0,0) 16%), #fc0;
+    background-position: 0 0, 30px 30px;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-size: 60px 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0; 
+}
+
+

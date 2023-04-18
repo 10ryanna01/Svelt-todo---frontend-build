@@ -1,0 +1,326 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@use './styles/index' as *;
+
+*:focus {
+	outline: 2px dashed $theme--option--C;
+	outline-offset: max(4px, 0.15em);
+}
+
+.App-UI__utility {
+	&__copy__button--primary {
+		font-size: 0.8rem;
+		letter-spacing: 2px;
+		font-weight: bold;
+	}
+	&__icon {
+		display: flex;
+		width: 25px;
+		height: auto;
+	}
+	&__copy__h1 {
+		font-size: 5rem;
+		color: $theme--option--E;
+		font-weight: 600;
+		letter-spacing: 4px;
+		text-shadow: 2px 2px $theme--option--B;
+		transition: text-shadow ease-in-out 0.3s;
+		text-transform: capitalize;
+		cursor: crosshair;
+
+		&:hover {
+			text-shadow: 4px 4px $theme--option--B;
+		}
+
+		@media screen and (max-width: 640px) {
+			font-size: 3rem;
+			transition: font-size ease-in-out 0.3s;
+		}
+	}
+	&__copy__h2 {
+		font-size: 3rem;
+		text-transform: capitalize;
+		color: $theme--option--E;
+		margin-top: 0;
+		margin-bottom: 0;
+
+		@media screen and (max-width: 640px) {
+			font-size: 1.8rem;
+			transition: font-size ease-in-out 0.3s;
+		}
+	}
+
+	&__copy__h4 {
+		font-size: 1rem;
+		line-height: 1;
+		@media screen and (max-width: 640px) {
+			font-size: 0.8rem;
+			transition: font-size ease-in-out 0.5s;
+		}
+	}
+
+	&__complete {
+		background: $theme--option--B;
+		color: white;
+		padding: 1rem;
+		width: 80px;
+		text-align: center;
+		text-transform: capitalize;
+		transition: all ease-in-out 0.3s;
+		@extend .App-UI__utility__copy__h4;
+
+		&:hover {
+			background: darken($theme--option--B, 10%);
+		}
+		@media screen and (max-width: 640px) {
+			min-width: 125px;
+			width: 100%;
+
+			transition: all ease-in-out 0.3s;
+		}
+	}
+
+	&__incomplete {
+		background: $theme--option--E;
+		color: white;
+		padding: 1rem;
+		width: 80px;
+		text-align: center;
+		text-transform: capitalize;
+		transition: all ease-in-out 0.3s;
+		@extend .App-UI__utility__copy__h4;
+		&:hover {
+			background: darken($theme--option--E, 10%);
+		}
+		@media screen and (max-width: 640px) {
+			transition: all ease-in-out 0.3s;
+			min-width: 125px;
+			width: 100%;
+		}
+	}
+
+	&__sr {
+		// borrowed from tail winds definition
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+    &__input-text{
+        border: 1px solid #ccc;
+		padding: 1rem;
+		text-transform: capitalize;
+		transition: 0.4s ease-in-out;
+		background-color: $theme--transparent;
+		color: $theme--option--dark;
+		width: 100%;
+		letter-spacing: 1px;
+		&::placeholder {
+			text-transform: capitalize;
+		}
+		&:focus {
+			outline: none;
+		}
+    }
+
+    &__input-checkbox---square-style{
+         
+		/* Add if not using autoprefixer */
+		-webkit-appearance: none;
+		/* Remove most all native input styles */
+		appearance: none;
+		/* For iOS < 15 */
+		background-color: var($theme--option--B);
+		/* Not removed via appearance */
+		margin: 0;
+		color: $theme--option--B;
+		width: 25px;
+		height: 25px;
+		border: 2px dashed $theme--option--D;
+		border-radius: 0.15em;
+
+		transform-origin: center;
+		display: grid;
+		place-content: space-around;
+
+		&::before {
+			content: '';
+			width: 16px;
+			height: 16px;
+			clip-path: inset(1% 1% 1% 1%);
+			position: relative;
+			top: 1px;
+
+			transform: scale(0);
+			transform-origin: center center;
+			transition: 0.4s transform ease-in-out;
+			box-shadow: inset 1em 1em var($theme--option--A-bg);
+
+			background-color: $theme--option--B;
+		}
+
+		&:checked::before {
+			transform: scale(1);
+		}
+
+		&:disabled {
+			$theme--option--dark: var($theme--option--light);
+
+			color: var($theme--option--light);
+			cursor: not-allowed;
+		}
+    }
+}
+
+.App-UI {
+	margin: 0 auto;
+	padding: 2rem;
+	box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.8);
+	max-width: 800px;
+	width: 100%;
+
+	@media screen and (max-width: 640px) {
+		padding: 0;
+		transition: all ease-in-out 0.5s;
+	}
+	&__container-body {
+		display: flex;
+		flex-flow: column;
+		border: 3px solid $theme--option--D;
+		padding: 1rem;
+		padding-bottom: 0;
+	}
+
+	&__copy__title {
+		@extend .App-UI__utility__copy__h1;
+		text-align: center;
+	}
+	&__copy__sub-title {
+		@extend .App-UI__utility__copy__h2;
+	}
+
+	&__button--primary {
+		@include App-UI__utility__Buttton--primary(
+			$theme--option--C,
+			$theme--option--B,
+			$theme--option--light
+		);
+		min-width: 170px;
+		max-width: 225px;
+
+		@extend .App-UI__utility__copy__h4;
+		@media screen and (max-width: 640px) {
+			width: 100%;
+			padding: 1.5rem;
+			margin-left: auto;
+		}
+
+		svg {
+			margin-left: auto;
+		}
+	}
+	&__button--danger {
+		@include App-UI__utility__Buttton--primary(
+			$theme--transparent,
+			$theme--transparent,
+			$theme--option--E
+		);
+
+		svg {
+			transition: all 1s ease !important;
+		}
+		&:hover {
+			transform: scale(1.3);
+		}
+		padding: 0;
+	}
+	&__section-row {
+		display: flex;
+		flex-flow: row;
+		gap: 1rem;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2rem;
+		@media screen and (max-width: 640px) {
+			flex-flow: column;
+		}
+	}
+	&__section-content-column {
+		display: flex;
+		flex-flow: column;
+
+		width: 100%;
+	}
+	&__input__row {
+		display: flex;
+		flex-flow: row;
+		gap: 1rem;
+		width: 100%;
+		justify-content: space-between;
+
+		border: 3px dashed $theme--option--A-bg;
+		border-radius: 0;
+		align-items: center;
+		border-left: 0;
+		border-right: 0;
+		border-top: 0;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		@media screen and (max-width: 640px) {
+			display: block;
+			flex-flow: column;
+			width: 100%;
+		}
+
+		&:last-child {
+			border: 0;
+		}
+		&:hover {
+			background: lighten($theme--option--C, 20%);
+			&:nth-child(odd) {
+				background: none;
+			}
+		}
+	}
+	&__input__row--split {
+		display: contents;
+		@media screen and (max-width: 640px) {
+			transition: all ease-in-out 0.5s;
+			display: flex;
+			flex-flow: row;
+			width: 100%;
+			align-items: center;
+			gap: 30px;
+			margin-bottom: 1rem;
+			justify-content: space-between;
+
+			&:nth-of-type(2) {
+				flex-flow: row-reverse;
+				gap: 28px;
+				margin: 0;
+			}
+		}
+	}
+	&__input-wrapper {
+		display: flex;
+		position: relative;
+		max-width: 500px;
+		width: 100%;
+		@include App-UI__utility__input-style($theme--option--B);
+	}
+
+	&__input-text {
+        @extend .App-UI__utility__input-text; 
+		
+	}
+	&__input-checkbox {
+        @extend .App-UI__utility__input-checkbox---square-style;
+       
+	}
+   
+}
